@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
                child: Column(
                 children: <Widget>[
                   Text(
-                      "Power App", textAlign: TextAlign.center,
+                      "ATAKAN 01", textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 45, color: Colors.white, height: 5
                       )
