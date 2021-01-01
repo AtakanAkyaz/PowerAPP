@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'Screens/first_screen.dart';
 
 void main( ) => runApp( MyApp ());
 
@@ -13,29 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Power App",
       home: Scaffold(
-        body: Material(
-          child:Container(
-            constraints: BoxConstraints.expand(),
-            decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("images/FirstPage.jpg"),
-                      fit: BoxFit.cover
-                  )
-            ),
-              child:Center(
-               child: Column(
-                children: <Widget>[
-                  Text(
-                      "POWER APP", textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 45, color: Colors.white, height: 5
-                      )
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+        body:FirstScreen()
       ),
     );
   }
