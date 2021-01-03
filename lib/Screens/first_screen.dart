@@ -1,23 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projectse380/Screens/sign_in_screen.dart';
+
 
 
 
 class FirstScreen  extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return Stack(
-
       children:[
         BackGround(),
         Column(children: [
           Container(
             alignment: Alignment.center,
-              padding: EdgeInsets.only(top:100,bottom: 20),
+              padding: EdgeInsets.only(top:100,bottom: 10),
               child: Text("Power App",
-                  style: TextStyle(color: Colors.red, fontSize: 75.0, fontWeight: FontWeight.bold)
+                  style: TextStyle(color: Colors.white, fontSize: 75.0, fontWeight: FontWeight.bold)
               ),
             ),
           Login(),
@@ -58,28 +57,74 @@ class _LoginState extends State<Login> {
     return Center(
           child: Column(
             children: <Widget>[
-              TextField(
-                maxLength: 10,
-                cursorColor:Colors.red,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter your username'
+              Padding(padding: EdgeInsets.only(top:20,right:20,left: 20),
+                child:TextField(
+                  maxLength: 10,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                      fillColor: Colors.black54,
+                      filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color:Colors.white,width:3),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white24, width: 3.0),
+                      ),
+                      hintStyle: TextStyle( color: Colors.white),
+                      hintText: 'Enter your username'
+                  ),
                 ),
               ),
 
-              TextField(
-                maxLength: 10,
-                obscuringCharacter: "*",
-                obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.all(20.0),
-                    labelText: 'Enter your password'
+
+              Padding(padding: EdgeInsets.only(right:20,left: 20),
+                child:TextField(
+                  style: TextStyle(color: Colors.white),
+                  obscuringCharacter:"*",
+                  obscureText: true,
+                  maxLength: 10,
+                  decoration: InputDecoration(
+                      fillColor: Colors.black54,
+                      filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color:Colors.white,width:3),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white24, width: 3.0),
+                      ),
+                      hintStyle: TextStyle( color: Colors.white),
+                      hintText: 'Enter your passsword'
+                  ),
                 ),
               ),
-             
-
-
+              Row(
+                children: [
+                  Padding(padding: EdgeInsets.only(right:20,left:20),
+                    child:RaisedButton(
+                        color: Colors.black54,
+                        textColor: Colors.white,
+                        onPressed: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Sign_in()),
+                          );
+                        },
+                        child: Text("Log In")
+                    ),
+                  ),
+                  RaisedButton(
+                      color: Colors.black54,
+                      textColor: Colors.white,
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Sign_in()),
+                        );
+                      },
+                      child: Text("Sign In")
+                  ),
+                ],
+              ),
             ]
           ),
        );
