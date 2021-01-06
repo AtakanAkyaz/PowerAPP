@@ -7,6 +7,7 @@ class Sign_in extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body:BackGround(),
     );
   }
@@ -117,7 +118,7 @@ class _Sing_UpState extends State<Sing_Up> {
                       color: Colors.black54,
                       textColor: Colors.white,
                       onPressed: (){
-                        sign_up_powerapp(context);
+                        sign_up_powerapp(context); //alert dialog
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => MyApp()),

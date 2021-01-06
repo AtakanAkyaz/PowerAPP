@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Power App",
       home: Scaffold(
+          resizeToAvoidBottomPadding: false,
         body:FirstScreen()
 
       ),

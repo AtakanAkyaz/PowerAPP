@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projectse380/Screens/sign_in_screen.dart';
+import 'package:projectse380/Screens/courses.dart';
+
+import 'sign_in_screen.dart';
+
 
 
 
@@ -31,17 +34,17 @@ class FirstScreen  extends StatelessWidget {
 class BackGround extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              image: DecorationImage(
-                  colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop),
-                  image: AssetImage("images/FirstPage.jpg"),
-                  fit: BoxFit.cover
-              ),
+    return
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            image: DecorationImage(
+                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop),
+                image: AssetImage("images/FirstPage.jpg"),
+                fit: BoxFit.cover
             ),
-        );
+          ),
+    );
   }
 }
 
@@ -106,7 +109,7 @@ class _LoginState extends State<Login> {
                         onPressed: (){
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Sign_in()),
+                            MaterialPageRoute(builder: (context) => courses_main()),
                           );
                         },
                         child: Text("Log In")
