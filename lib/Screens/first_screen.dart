@@ -5,9 +5,6 @@ import 'package:projectse380/Screens/courses.dart';
 import 'sign_in_screen.dart';
 
 
-
-
-
 class FirstScreen  extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
