@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projectse380/Screens/listitem.dart';
+import 'package:projectse380/main.dart';
 
 
+// ignore: camel_case_types
 class courses_main extends StatelessWidget {
 
   @override
@@ -16,25 +18,7 @@ class courses_main extends StatelessWidget {
 
 
 
-class BackGround extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            image: DecorationImage(
-                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop),
-                image: AssetImage("images/FirstPage.jpg"),
-                fit: BoxFit.cover
-            ),
-          ),
-        ),
-      ]
-    );
-  }
-}
+
 class PowerApp extends StatefulWidget{
   @override
   _PowerAppState createState() => _PowerAppState();
@@ -64,10 +48,6 @@ class _PowerAppState extends State<PowerApp>{
               centerTitle:true,
             backgroundColor: Colors.black,
             toolbarHeight:80.0,
-            leading:IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.menu),
-            ),
             flexibleSpace: FlexibleSpaceBar(
               background: Image.network(img_Header,fit: BoxFit.cover,
                 color: Color(0xaa212121),
@@ -108,6 +88,7 @@ class _PowerAppState extends State<PowerApp>{
       },
       body: SingleChildScrollView(
         child: Padding(
+
           padding:
             const EdgeInsets.only(top:20.0,right:20.0,left:20.0),
           child: Column(
@@ -133,6 +114,59 @@ class _PowerAppState extends State<PowerApp>{
       )
 
     ),
+      drawer: Drawer(
+        child: ListView(
+
+          padding: EdgeInsets.only(top:20,left:10),
+          children: [
+            ListTile(
+              leading:Icon(Icons.accessibility_new) ,
+              title: Text('Condition courses'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading:Icon(Icons.library_add) ,
+              title: Text('Create your own workout'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title:Text("Log out"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyApp()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class BackGround extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              image: DecorationImage(
+                  colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.8), BlendMode.dstATop),
+                  image: AssetImage("images/FirstPage.jpg"),
+                  fit: BoxFit.cover
+              ),
+            ),
+          ),
+        ]
     );
   }
 }
