@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projectse380/Screens/listitem.dart';
 
-import '../main.dart';
 
 class courses_main extends StatelessWidget {
 
@@ -43,9 +43,10 @@ class _PowerAppState extends State<PowerApp>{
   String img_Header =
       "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
   List<String> trainingImage= [
-    "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
-    "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1489&q=80"
-    "https://images.unsplash.com/photo-1518611012118-696072aa579a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    "https://content.active.com/Assets/Active.com+Content+Site+Digital+Assets/Fitness/580x350/Push-Up.jpg",
+    "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1489&q=80",
+    "https://images.unsplash.com/photo-1518611012118-696072aa579a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    "https://www.mensjournal.com/wp-content/uploads/mf/cardio-builds-muscle-main_0.jpg?w=1200&h=630&crop=1&quality=86&strip=all",
   ];
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _PowerAppState extends State<PowerApp>{
           SliverAppBar(
     expandedHeight: 300.0,
             pinned:true,
-            floating:true,
+            floating:false,
             title:Text("PowerApp",style: TextStyle(color:Colors.white)
             ),
               centerTitle:true,
@@ -105,8 +106,32 @@ class _PowerAppState extends State<PowerApp>{
           )
         ];
       },
-      //Build app Body dk 8:58---------------------------------------------------------------------------
-      body: Center(child: Text("Hello")),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding:
+            const EdgeInsets.only(top:20.0,right:20.0,left:20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Top Trends",
+                  style:TextStyle(
+                    color:Colors.black,
+                    fontSize:24.0,
+                    fontWeight: FontWeight.w800,
+                  ),
+              ),
+              SizedBox(height: 20.0,
+              ),
+              listItem(trainingImage[0], "Full Body Program", 53, 30),
+              listItem(trainingImage[1], "Crossfit Program", 30, 10),
+              listItem(trainingImage[2], "Yoga Program", 42, 30),
+              listItem(trainingImage[3], "Cardio Program", 55, 20),
+            ],
+          ),
+        )
+      )
+
     ),
     );
   }
