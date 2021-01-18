@@ -27,28 +27,29 @@ class App extends StatelessWidget {
     return FutureBuilder(
       // Initialize FlutterFire:
       future: _initialization,
-      builder: (context, snapshot) {
-        // Check for errors
-        if (snapshot.hasError) {
-          return Scaffold(
-            body: Center(
-              child: Text("ERROR"),
-            ),
-          );
-        }
-
-        // Once complete, show your application
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Scaffold(
-              resizeToAvoidBottomPadding: false, body: FirstScreen());
-        }
-
-        // Otherwise, show something whilst waiting for initialization to complete
+      builder: (context, snapshot)
+    {
+      // Check for errors
+      if (snapshot.hasError) {
         return Scaffold(
-            body: Center(
-          child: CircularProgressIndicator(),
-        ));
-      },
+          body: Center(
+            child: Text("ERROR"),
+          ),
+        );
+      }
+
+      // Once complete, show your application
+      if (snapshot.connectionState == ConnectionState.done) {
+        return Scaffold(
+            resizeToAvoidBottomPadding: false, body: FirstScreen());
+      }
+
+      // Otherwise, show something whilst waiting for initialization to complete
+      return Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ));
+    },
     );
   }
 }
