@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'Screens/first_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
 
   @override
   Widget build(BuildContext context) {

@@ -7,9 +7,11 @@ import 'sign_in_screen.dart';
 
 FirebaseAuth _auth = FirebaseAuth.instance;
 
+
 bool _flag = false;
 TextEditingController emailController = new TextEditingController();
 TextEditingController _passwordController = new TextEditingController();
+
 
 class FirstScreen extends StatelessWidget {
   @override
@@ -106,6 +108,9 @@ class _LoginState extends State<Login> {
                   color: Colors.black54,
                   textColor: Colors.white,
                   onPressed: () async {
+                    if(_auth.currentUser != null){
+                      await FirebaseAuth.instance.signOut();
+                    }
                     await _loginIn();
                     if (_flag) {
                       Navigator.push(
@@ -134,14 +139,23 @@ class _LoginState extends State<Login> {
 }
 
 void _loginIn() async {
-  _auth.signOut();
   String _mail = emailController.text;
   String _password = _passwordController.text;
   try {
-    UserCredential userCredential = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: _mail, password: _password);
-    debugPrint("********** Login in **********");
-    _flag = true;
+    var _userCredential = await _auth.signInWithEmailAndPassword(email: _mail, password: _password);
+    if(_userCredential.user.emailVerified ){
+      if(_auth.currentUser != null){
+        _flag = true;
+        debugPrint("********** Login in **********");
+      }
+      else{
+        _flag =false;
+      }
+    }else{
+      debugPrint("e mail is not verified");
+
+    }
+
   } catch (e) {
     if (e.code == "user-not-found") {
       debugPrint("********** " + e.toString() + " **********");

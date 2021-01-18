@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projectse380/Screens/FullBody_Program.dart';
@@ -5,7 +6,9 @@ import 'package:projectse380/Screens/listitem.dart';
 import 'package:projectse380/main.dart';
 
 
+FirebaseAuth _auth = FirebaseAuth.instance;
 
+User user = _auth.currentUser;
 
 // ignore: camel_case_types
 class courses_main extends StatelessWidget {
@@ -235,11 +238,13 @@ class _PowerAppState extends State<PowerApp>{
                 Navigator.pop(context);
               },
             ),
-            ListTile(
+            ListTile (
               leading: Icon(Icons.exit_to_app),
+
               title:Text("Log out"),
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                  Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MyApp()),
                 );
