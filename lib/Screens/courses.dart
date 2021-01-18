@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projectse380/Screens/FullBody_Program.dart';
@@ -5,7 +6,9 @@ import 'package:projectse380/Screens/listitem.dart';
 import 'package:projectse380/main.dart';
 
 
+FirebaseAuth _auth = FirebaseAuth.instance;
 
+User user = _auth.currentUser;
 
 // ignore: camel_case_types
 class courses_main extends StatelessWidget {
@@ -117,12 +120,90 @@ class _PowerAppState extends State<PowerApp>{
                     fontWeight: FontWeight.w800,
                   ),
               ),
-              SizedBox(height: 20.0,
+              SizedBox(height: 150.0,
+                child: InkWell(child: Container(
+                  decoration:BoxDecoration(
+
+                  ),
+                  child:Align(child: listItem(trainingImage[0], "Full Body Program", 53, 30),
+                    alignment: Alignment(0.1,0.1),
+                  ),
+
+
+                ),
+                  onTap:(){
+                    Navigator.push(
+                      context,MaterialPageRoute(builder: (context) => Fullbody_Program()),
+                    );
+
+
+                  },
+                ),
               ),
-              listItem(trainingImage[0], "Full Body Program", 53, 30),
-              listItem(trainingImage[1], "Crossfit Program", 30, 10),
-              listItem(trainingImage[2], "Yoga Program", 42, 30),
-              listItem(trainingImage[3], "Cardio Program", 55, 20),
+              SizedBox(height: 150.0,
+                child: InkWell(child: Container(
+                  decoration:BoxDecoration(
+
+                  ),
+                  child:Align(child: listItem(trainingImage[1], "Crossfit Program", 30, 10),
+                    alignment: Alignment(0.1,0.1),
+                  ),
+
+
+                ),
+                  onTap:(){
+                    Navigator.push(
+                      context,MaterialPageRoute(builder: (context) => Fullbody_Program()),
+                    );
+
+
+                  },
+                ),
+              ),
+              SizedBox(height: 150.0,
+                child: InkWell(child: Container(
+                  decoration:BoxDecoration(
+
+                  ),
+                  child:Align(child: listItem(trainingImage[2], "Yoga Program", 42, 30),
+                    alignment: Alignment(0.1,0.1),
+                  ),
+
+
+                ),
+                  onTap:(){
+                    Navigator.push(
+                      context,MaterialPageRoute(builder: (context) => Fullbody_Program()),
+                    );
+
+
+                  },
+                ),
+              ),
+              SizedBox(height: 150.0,
+                child: InkWell(child: Container(
+                  decoration:BoxDecoration(
+
+                  ),
+                  child:Align(child: listItem(trainingImage[3], "Cardio Program", 55, 20),
+                    alignment: Alignment(0.1,0.1),
+                  ),
+
+
+                ),
+                  onTap:(){
+                    Navigator.push(
+                      context,MaterialPageRoute(builder: (context) => Fullbody_Program()),
+                    );
+
+
+                  },
+                ),
+              ),
+
+
+
+
             ],
           ),
         )
@@ -157,11 +238,13 @@ class _PowerAppState extends State<PowerApp>{
                 Navigator.pop(context);
               },
             ),
-            ListTile(
+            ListTile (
               leading: Icon(Icons.exit_to_app),
+
               title:Text("Log out"),
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                  Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MyApp()),
                 );
