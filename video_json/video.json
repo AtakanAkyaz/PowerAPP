@@ -1,14 +1,35 @@
 [
   {
-   "ID" : "1",
-    "VideoName" :"Squat",
-    "Path":"Videos/Barbell.gif",
+   "ID" : "0",
+    "VideoName" :"Calf Raises",
+    "Path":"Videos/calf raises.gif",
     "setxrep": "7x8"
   },
   {
+    "ID" : "1",
+    "VideoName" :"Stepup Side",
+    "Path":"Videos/stepup_side.gif",
+    "setxrep": "7x8"
+
+  },
+  {
     "ID" : "2",
-    "VideoName" :"Tekme",
-    "Path":"Videos/Barbell.gif",
+    "VideoName" :"Front Raise",
+    "Path":"Videos/frontraise.gif",
+    "setxrep": "7x8"
+
+  },
+  {
+    "ID" : "3",
+    "VideoName" :"Chest Press",
+    "Path":"Videos/chest_press.gif",
+    "setxrep": "7x8"
+
+  },
+  {
+    "ID" : "4",
+    "VideoName" :"Russian Twist",
+    "Path":"Videos/russiantwist.gif",
     "setxrep": "7x8"
 
   }

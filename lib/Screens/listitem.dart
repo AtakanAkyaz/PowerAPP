@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
     Widget listItem(String bg,String title,int exercises, int time){
+
   return Container(
     width: double.infinity,
     margin:EdgeInsets.only(bottom:10.0),
@@ -36,6 +37,7 @@ import "package:flutter/material.dart";
 
           ),
           SizedBox(height: 8.0 ,
+
           ),
           Text(
             "${time} Minutes Per a Day",
