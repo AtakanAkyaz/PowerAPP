@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projectse380/Screens/FullBody_Program.dart';
 import 'package:projectse380/Screens/listitem.dart';
 import 'package:projectse380/main.dart';
+
+
 
 
 // ignore: camel_case_types
@@ -12,6 +15,7 @@ class courses_main extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: PowerApp(),
+
     );
   }
 }
@@ -87,14 +91,25 @@ class _PowerAppState extends State<PowerApp>{
         ];
       },
       body: SingleChildScrollView(
+
+
         child: Padding(
 
           padding:
             const EdgeInsets.only(top:20.0,right:20.0,left:20.0),
           child: Column(
+
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.red,
+
+                  ),
+                ),
+
+
               Text("Top Trends",
                   style:TextStyle(
                     color:Colors.black,
@@ -124,6 +139,15 @@ class _PowerAppState extends State<PowerApp>{
               title: Text('Condition courses'),
               onTap: () {
                 Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Fullbody Program'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Fullbody_Program()),
+                );
               },
             ),
             ListTile(

@@ -1,0 +1,15 @@
+[
+  {
+   "ID" : "1",
+    "VideoName" :"Squat",
+    "Path":"Videos/Barbell.gif",
+    "setxrep": "7x8"
+  },
+  {
+    "ID" : "2",
+    "VideoName" :"Tekme",
+    "Path":"Videos/Barbell.gif",
+    "setxrep": "7x8"
+
+  }
+]
