@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,11 @@ import 'package:projectse380/main.dart';
 
 
 FirebaseAuth _auth = FirebaseAuth.instance;
-
+FirebaseFirestore _firestore = FirebaseFirestore.instance;
+final uid = _auth.currentUser.uid;
 User user = _auth.currentUser;
+
+
 
 // ignore: camel_case_types
 class courses_main extends StatelessWidget {
@@ -43,7 +47,6 @@ class _PowerAppState extends State<PowerApp>{
   Widget build(BuildContext context) {
     return Scaffold(
     body : NestedScrollView(
-
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return<Widget>[
           SliverAppBar(
@@ -86,7 +89,8 @@ class _PowerAppState extends State<PowerApp>{
         ),
             actions:[
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                },
                 icon: Icon(Icons.settings),
               ),
             ]
@@ -234,7 +238,7 @@ class _PowerAppState extends State<PowerApp>{
             ListTile(
               leading:Icon(Icons.library_add) ,
               title: Text('Create your own workout'),
-              onTap: () {
+              onTap: ()  {
                 Navigator.pop(context);
               },
             ),
@@ -276,4 +280,10 @@ class BackGround extends StatelessWidget {
         ]
     );
   }
+}
+Future<void> a () async {
+
+  DocumentSnapshot docS= await _firestore.doc("Users/$uid").get();
+  var name = ("Name :  ${docS["name"]}");
+
 }

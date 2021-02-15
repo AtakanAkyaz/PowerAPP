@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projectse380/main.dart';
 
 FirebaseAuth _auth = FirebaseAuth.instance;
+FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 TextEditingController emailController = new TextEditingController();
 TextEditingController nameController = new TextEditingController();
@@ -12,7 +14,7 @@ class Sign_in extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset : false,
       body: BackGround(),
     );
   }
@@ -65,6 +67,7 @@ class _Sing_UpState extends State<Sing_Up> {
         Padding(
           padding: EdgeInsets.only(right: 20, left: 20),
           child: TextField(
+            controller: nameController, // get name inside the box
             style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 fillColor: Colors.black54,
@@ -131,7 +134,7 @@ class _Sing_UpState extends State<Sing_Up> {
                       MaterialPageRoute(builder: (context) => MyApp()),
                     );
                   },
-                  child: Text("Sign In")),
+                  child: Text("Sign Up")),
             ),
           ],
         ),
@@ -148,12 +151,17 @@ void sign_up_powerapp(BuildContext context) {
 }
 
 void _singIn() async {
+  String _name = nameController.text;
   String _mail = emailController.text;
   String _password = passwordController.text;
   try {
     UserCredential _credential = await _auth.createUserWithEmailAndPassword(
         email: _mail, password: _password);
     User _newUSer = _credential.user;
+    Map<String , dynamic> addUser = Map();
+    addUser["name"] = _name;
+    final uid = _newUSer.uid;
+    _firestore.doc("Users/$uid").set({"name" : "$_name" , "userID" : "$uid"});
     debugPrint("Your account is created");
     await _newUSer.sendEmailVerification();
     debugPrint("Your verificetion mail is sended");

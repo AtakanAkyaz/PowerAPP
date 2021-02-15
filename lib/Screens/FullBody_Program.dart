@@ -1,8 +1,16 @@
 import 'dart:convert';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projectse380/Screens/courses.dart';
+
+FirebaseAuth _auth = FirebaseAuth.instance;
+FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+
+final uid = _auth.currentUser.uid;
+
 
 // ignore: camel_case_types
 class Fullbody_Program extends StatefulWidget {
@@ -11,11 +19,12 @@ class Fullbody_Program extends StatefulWidget {
 }
 
 class _Fullbody_ProgramState extends State<Fullbody_Program> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CupertinoColors.inactiveGray,
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text('Full Body Program'),
@@ -291,7 +300,6 @@ class Exercisevideos extends StatefulWidget {
 }
 
 class _ExercisevideosState extends State<Exercisevideos> {
-
   var _count=0;
 
   Future<void> _incrementCounter() async {
@@ -304,6 +312,7 @@ class _ExercisevideosState extends State<Exercisevideos> {
           context,
           MaterialPageRoute(builder: (context) => courses_main()),
         );
+        finishedExercise("FullBodyProgram");
         _count = 0;
       }
 
@@ -312,7 +321,7 @@ class _ExercisevideosState extends State<Exercisevideos> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CupertinoColors.inactiveGray,
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       body: FutureBuilder(
         builder: (context, snapshot) {
           var showData = json.decode(snapshot.data.toString());
@@ -355,6 +364,16 @@ class _ExercisevideosState extends State<Exercisevideos> {
 
   }
 }
+
+
+Future<void> finishedExercise (String nameOfExercise) async {
+  debugPrint("-------------------------$uid--------------------------------");
+  DocumentReference docRef= _firestore.doc("Users/$uid");
+  await docRef.collection("finishedExercise").add({"name": "$nameOfExercise" , "Date" : FieldValue.serverTimestamp()});
+}
+
+
+
 
 
 /*

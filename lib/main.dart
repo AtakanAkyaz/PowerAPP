@@ -44,7 +44,7 @@ class App extends StatelessWidget {
       // Once complete, show your application
       if (snapshot.connectionState == ConnectionState.done) {
         return Scaffold(
-            resizeToAvoidBottomPadding: false, body: FirstScreen());
+            resizeToAvoidBottomInset: false, body: FirstScreen());
       }
 
       // Otherwise, show something whilst waiting for initialization to complete

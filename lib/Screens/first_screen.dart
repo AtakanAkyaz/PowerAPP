@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,10 @@ import 'package:projectse380/Screens/courses.dart';
 import 'sign_in_screen.dart';
 
 FirebaseAuth _auth = FirebaseAuth.instance;
+FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+
+final uid = _auth.currentUser.uid;
 
 
 bool _flag = false;
@@ -16,6 +21,7 @@ TextEditingController _passwordController = new TextEditingController();
 class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    _auth.signOut();
     return Stack(children: [
       BackGround(),
       Column(
@@ -130,7 +136,7 @@ class _LoginState extends State<Login> {
                     MaterialPageRoute(builder: (context) => Sign_in()),
                   );
                 },
-                child: Text("Sign In")),
+                child: Text("Sign Up")),
           ],
         ),
       ]),
@@ -139,8 +145,10 @@ class _LoginState extends State<Login> {
 }
 
 void _loginIn() async {
+  await _auth.signOut();
   String _mail = emailController.text;
   String _password = _passwordController.text;
+
   try {
     var _userCredential = await _auth.signInWithEmailAndPassword(email: _mail, password: _password);
     if(_userCredential.user.emailVerified ){
@@ -155,13 +163,12 @@ void _loginIn() async {
       debugPrint("e mail is not verified");
 
     }
-
-  } catch (e) {
-    if (e.code == "user-not-found") {
-      debugPrint("********** " + e.toString() + " **********");
+  } catch (error) {
+    if (error.code == "user-not-found") {
+      debugPrint("********** " + error.toString() + " **********");
       debugPrint("There is no such user");
-    } else if (e.code == "wrong-password") {
-      debugPrint("********** " + e.toString() + " **********");
+    } else if (error.code == "wrong-password") {
+      debugPrint("********** " + error.toString() + " **********");
       debugPrint("Wrong password");
     }
   }
