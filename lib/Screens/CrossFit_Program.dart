@@ -15,12 +15,12 @@ final uid = _auth.currentUser.uid;
 
 
 // ignore: camel_case_types
-class Fullbody_Program extends StatefulWidget {
+class CrossFit_Program extends StatefulWidget {
   @override
-  _Fullbody_ProgramState createState() => _Fullbody_ProgramState();
+  _CrossFit_ProgramState createState() => _CrossFit_ProgramState();
 }
 
-class _Fullbody_ProgramState extends State<Fullbody_Program> {
+class _CrossFit_ProgramState extends State<CrossFit_Program> {
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _Fullbody_ProgramState extends State<Fullbody_Program> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text('Full Body Program'),
+        title: Text('CrossFit Program'),
       ),
       drawer: Drawer(
         child: ListView(
@@ -321,7 +321,7 @@ class _ExercisevideosState extends State<Exercisevideos> {
           context,
           MaterialPageRoute(builder: (context) => courses_main()),
         );
-        finishedExercise("FullBodyProgram");
+        finishedExercise("CrossFit Program");
         _count = 0;
       }
 
@@ -359,24 +359,21 @@ class _ExercisevideosState extends State<Exercisevideos> {
                   ],
                 ),
               ),
-            RaisedButton(onPressed:(){
-              _incrementCounter();
-              debugPrint("$_count");
-            })
-          ],
+              RaisedButton(onPressed:(){
+                _incrementCounter();
+                debugPrint("$_count");
+              })
+            ],
           );
         },
-          future: DefaultAssetBundle.of(context)
-          .loadString(("video_json/video.json")),
+        future: DefaultAssetBundle.of(context)
+            .loadString(("video_json/video.json")),
       ),
     );
 
   }
 }
-
-
 Future<void> finishedExercise (String nameOfExercise) async {
-  debugPrint("-------------------------$uid--------------------------------");
   DocumentReference docRef= _firestore.doc("Users/$uid");
   await docRef.collection("finishedExercise").add({"name": "$nameOfExercise" , "Date" : FieldValue.serverTimestamp()});
 }

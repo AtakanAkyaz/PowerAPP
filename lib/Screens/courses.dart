@@ -9,6 +9,9 @@ import 'package:projectse380/Screens/VideosShare.dart';
 import 'package:projectse380/Screens/listitem.dart';
 import 'package:projectse380/main.dart';
 import 'package:projectse380/Screens/first_screen.dart';
+import 'package:projectse380/Screens/finishedExercises.dart';
+
+import 'CrossFit_Program.dart';
 
 
 FirebaseAuth _auth = FirebaseAuth.instance;
@@ -165,7 +168,7 @@ class _PowerAppState extends State<PowerApp>{
                 ),
                   onTap:(){
                     Navigator.push(
-                      context,MaterialPageRoute(builder: (context) => Fullbody_Program()),
+                      context,MaterialPageRoute(builder: (context) => CrossFit_Program()),
                     );
 
 
@@ -234,14 +237,20 @@ class _PowerAppState extends State<PowerApp>{
               leading:Icon(Icons.account_box) ,
               title: Text('Welcome $name'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => exercise()),
+                );
               },
             ),
             ListTile(
               leading:Icon(Icons.accessibility_new) ,
               title: Text('Condition courses'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Fullbody_Program()),
+                );
               },
             ),
             ListTile(
