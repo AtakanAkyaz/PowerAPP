@@ -49,13 +49,7 @@ class _Fullbody_ProgramState extends State<Fullbody_Program> {
                 Navigator.pop(context);
               },
             ),
-            ListTile(
-              leading: Icon(Icons.library_add),
-              title: Text('Create your own workout'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
+
             ListTile(
               leading: Icon(Icons.exit_to_app),
               title: Text("Log out"),

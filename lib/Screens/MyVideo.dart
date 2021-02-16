@@ -25,15 +25,15 @@ class _MyVideoState extends State<MyVideo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      body:Container(
-          child:SingleChildScrollView(
-            physics: new BouncingScrollPhysics(),
-            scrollDirection: Axis.vertical,
-           child: Column(
-             mainAxisSize: MainAxisSize.min,
-             children: <Widget>[
-               ListView.separated(
+      resizeToAvoidBottomPadding: false,
+      body: Container(
+        child: SingleChildScrollView(
+          physics: new BouncingScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListView.separated(
                 shrinkWrap: true,
                 cacheExtent: 1000,
                 physics: NeverScrollableScrollPhysics(),
@@ -42,37 +42,38 @@ class _MyVideoState extends State<MyVideo> {
                 addAutomaticKeepAlives: true,
                 itemCount: itemList.isEmpty ? 0 : itemList.length,
                 itemBuilder: (BuildContext context, int index) =>
-                 Container(
-                   width: double.infinity,
-                   height: 250,
-                   alignment:  Alignment.center,
-                   child: Container(
-                     key:  PageStorageKey(
-                       "keydata$index",
-                     ),
-                       child:VideoWidget(
-                       play:true, url:itemList[index]
-                   )
-                   ),
-                 ),
-                 separatorBuilder: (context,index){
+                    Container(
+                      width: double.infinity,
+                      height: 800,
+                      alignment: Alignment.center,
+                      child: Container(
+                          key: new PageStorageKey(
+                            "keydata$index",
+                          ),
+                          child: VideoWidget(
+                              play: true,
+                              url: itemList[index]
+                          )
+                      ),
+                    ),
+                separatorBuilder: (context, index) {
                   return Divider();
-                 },
-               )
-             ],
-           ),
+                },
+              ),
+            ],
           ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-
           uploadToStorage();
         },
-        mini: true,
-        tooltip: 'Add Video',
-
-        child: Icon(Icons.videocam),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.transparent,
+        child: Icon(
+          Icons.add,
+          size: 40,
+          color: Colors.white,
+        ),
       ),
     );
   }
@@ -162,16 +163,16 @@ class _VideoWidgetState extends State<VideoWidget> {
             return Container(
               child: Card(
                 key: PageStorageKey(widget.url),
-                elevation: 5.0,
+                elevation: 3.0,
                 child:Column(
                   children:<Widget>[
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child:Chewie(
                           key: PageStorageKey(widget.url),
                           controller: ChewieController(
                             videoPlayerController: videoPlayerController,
-                            aspectRatio: 3/2,
+
                             autoInitialize: true,
                             looping: false,
                             autoPlay: false,
