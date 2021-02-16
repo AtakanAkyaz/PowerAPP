@@ -19,7 +19,7 @@ class _Videos_ShareState extends State<Videos_Share> {
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: CupertinoColors.inactiveGray,
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text('Users Videos'),

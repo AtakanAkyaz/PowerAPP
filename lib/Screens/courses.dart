@@ -6,13 +6,14 @@ import 'package:projectse380/Screens/FullBody_Program.dart';
 import 'package:projectse380/Screens/VideosShare.dart';
 import 'package:projectse380/Screens/listitem.dart';
 import 'package:projectse380/main.dart';
+import 'package:projectse380/Screens/first_screen.dart';
 
 
 FirebaseAuth _auth = FirebaseAuth.instance;
 FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final uid = _auth.currentUser.uid;
 User user = _auth.currentUser;
-var name;
+
 
 
 
@@ -21,8 +22,10 @@ class courses_main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       home: PowerApp(),
 
     );
@@ -33,6 +36,7 @@ class courses_main extends StatelessWidget {
 
 
 class PowerApp extends StatefulWidget{
+
   @override
   _PowerAppState createState() => _PowerAppState();
 }
@@ -217,13 +221,16 @@ class _PowerAppState extends State<PowerApp>{
 
     ),
       drawer: Drawer(
+
         child: ListView(
 
           padding: EdgeInsets.only(top:20,left:10),
           children: [
+
             ListTile(
+
               leading:Icon(Icons.account_box) ,
-              title: Text('avatar atakan ayarlıcak'),
+              title: Text('Welcome $name'),
               onTap: () {
                 Navigator.pop(context);
               },
@@ -302,9 +309,8 @@ class BackGround extends StatelessWidget {
 }
 Future<void> a () async {
 
-  DocumentSnapshot docS= await _firestore.doc("Users/$uid").get();
-  name = ("Name :  ${docS["name"]}");
-  debugPrint("$name");
+
+  debugPrint("-----------------------$name");
 
   FirebaseFirestore.instance.collection("Users/$uid/finishedExercise").get().then((QuerySnapshot querySnapshot) => {
     querySnapshot.docs.forEach((doc) {debugPrint(doc["Date"].toString() );})

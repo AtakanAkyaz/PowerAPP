@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projectse380/Screens/courses.dart';
 
+import 'courses.dart';
+import 'courses.dart';
 import 'sign_in_screen.dart';
 
 FirebaseAuth _auth = FirebaseAuth.instance;
@@ -12,7 +14,7 @@ FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 final uid = _auth.currentUser.uid;
 
-
+var name;
 bool _flag = false;
 TextEditingController emailController = new TextEditingController();
 TextEditingController _passwordController = new TextEditingController();
@@ -161,9 +163,9 @@ void _loginIn() async {
       }
     }else{
       debugPrint("e mail is not verified");
-
     }
-    
+    DocumentSnapshot docS= await _firestore.doc("Users/$uid").get();
+    name = ("${docS["name"]}");
   }
 
   catch (error) {
