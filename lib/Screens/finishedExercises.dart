@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 FirebaseAuth _auth = FirebaseAuth.instance;
 FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
+var _email = _auth.currentUser.email;
 
 final uid = _auth.currentUser.uid;
 var asddd ;
@@ -24,7 +24,18 @@ class _exerciseState extends State<exercise> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Finished Exercises"),
+        title: Text("Settings"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RaisedButton(
+              onPressed: () async {await _auth.sendPasswordResetEmail(email: _email);},
+              child : Text("Change your password")
+            )
+          ],
+        ),
       ),
       );
   }
