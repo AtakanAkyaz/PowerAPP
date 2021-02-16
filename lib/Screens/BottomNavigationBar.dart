@@ -1,7 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-import 'file:///D:/Githup/PowerAPP/lib/Screens/MyVideo.dart';
+import 'MyVideo.dart';
+
 
 class NavigationBar extends StatefulWidget {
   @override
