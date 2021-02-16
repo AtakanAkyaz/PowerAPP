@@ -163,7 +163,10 @@ void _loginIn() async {
       debugPrint("e mail is not verified");
 
     }
-  } catch (error) {
+    
+  }
+
+  catch (error) {
     if (error.code == "user-not-found") {
       debugPrint("********** " + error.toString() + " **********");
       debugPrint("There is no such user");

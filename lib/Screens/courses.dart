@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projectse380/Screens/FullBody_Program.dart';
+import 'package:projectse380/Screens/VideosShare.dart';
 import 'package:projectse380/Screens/listitem.dart';
 import 'package:projectse380/main.dart';
 
@@ -11,6 +12,7 @@ FirebaseAuth _auth = FirebaseAuth.instance;
 FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final uid = _auth.currentUser.uid;
 User user = _auth.currentUser;
+var name;
 
 
 
@@ -220,6 +222,13 @@ class _PowerAppState extends State<PowerApp>{
           padding: EdgeInsets.only(top:20,left:10),
           children: [
             ListTile(
+              leading:Icon(Icons.account_box) ,
+              title: Text('avatar atakan ayarlıcak'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
               leading:Icon(Icons.accessibility_new) ,
               title: Text('Condition courses'),
               onTap: () {
@@ -232,6 +241,16 @@ class _PowerAppState extends State<PowerApp>{
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Fullbody_Program()),
+                );
+              },
+            ),
+            ListTile(
+              leading:Icon(Icons.slideshow),
+              title: Text('Share Videos'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Videos_Share()),
                 );
               },
             ),
@@ -284,6 +303,11 @@ class BackGround extends StatelessWidget {
 Future<void> a () async {
 
   DocumentSnapshot docS= await _firestore.doc("Users/$uid").get();
-  var name = ("Name :  ${docS["name"]}");
+  name = ("Name :  ${docS["name"]}");
+  debugPrint("$name");
+
+  FirebaseFirestore.instance.collection("Users/$uid/finishedExercise").get().then((QuerySnapshot querySnapshot) => {
+    querySnapshot.docs.forEach((doc) {debugPrint(doc["Date"].toString() );})
+  });
 
 }

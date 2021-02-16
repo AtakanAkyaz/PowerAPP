@@ -34,6 +34,13 @@ class _Fullbody_ProgramState extends State<Fullbody_Program> {
           padding: EdgeInsets.only(top: 20, left: 10),
           children: [
             ListTile(
+              leading:Icon(Icons.account_box) ,
+              title: Text('avatar atakan ayarlıcak'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.accessibility_new),
               title: Text('Condition courses'),
               onTap: () {
