@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'file:///D:/Githup/PowerAPP/lib/Screens/BottomNavigationBar.dart';
+import 'file:///D:/Githup/PowerAPP/lib/Screens/MyVideo.dart';
 import 'package:projectse380/Screens/FullBody_Program.dart';
 import 'package:projectse380/Screens/VideosShare.dart';
 import 'package:projectse380/Screens/listitem.dart';
@@ -257,7 +259,7 @@ class _PowerAppState extends State<PowerApp>{
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Videos_Share()),
+                  MaterialPageRoute(builder: (context) => NavigationBar()),
                 );
               },
             ),

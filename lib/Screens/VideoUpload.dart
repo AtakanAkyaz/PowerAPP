@@ -46,10 +46,30 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
   final formKey = new GlobalKey<FormState>();
 
 
+  Future getVideo() async {
+    Future<File> _videoFile =
+    ImagePicker.pickVideo(source: ImageSource.gallery);
+    _videoFile.then((file) async {
+      setState(() {
+        videoFile = file;
+        _controller = VideoPlayerController.file(videoFile);
+
+        // Initialize the controller and store the Future for later use.
+        _initializeVideoPlayerFuture = _controller.initialize();
+
+        // Use the controller to loop the video.
+        _controller.setLooping(true);
+      });
+    });
+  }
+
+
+
 
 
   Future getImage() async{
     final tempVideo = await ImagePicker().getVideo(source:ImageSource.gallery);
+
 
     setState(() {
       //sampleVideo = tempVideo ;
@@ -81,11 +101,12 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:Center(
-        child: sampleVideo == null? Text("Select an Video"): enableUpload(),
+        child: videoFile == null? Text("Select an Video"): enableUpload(),
+
       ),
       floatingActionButton: FloatingActionButton(
         mini: true,
-        onPressed: getImage,
+        onPressed: getVideo,
         tooltip: 'Add Video',
 
         child: Icon(Icons.videocam),
@@ -103,9 +124,10 @@ class _UploadVideoPageState extends State<UploadVideoPage> {
         child: Form(
             key:formKey,
             child:Column(
+
               children: <Widget>[
 
-               Image.file(sampleVideo, height: 310.0,width:600.0 ,),
+               Image.file(videoFile, height: 310.0,width:600.0 ,),
 
                 SizedBox(height: 15.0,),
 
