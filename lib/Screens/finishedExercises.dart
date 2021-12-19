@@ -48,8 +48,8 @@ void asd(){
       .get()
       .then((QuerySnapshot querySnapshot) => {
     querySnapshot.docs.forEach((doc) {
-      debugPrint(doc["name"]);
-      debugPrint(doc["Date"].toString());
+      debugPrint("----------------------------------------------------"+doc["name"]);
+      debugPrint("----------------------------------------------------"+doc["Date"].toString());
     }),
   });
 }

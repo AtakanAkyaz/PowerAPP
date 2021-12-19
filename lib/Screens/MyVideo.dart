@@ -25,7 +25,6 @@ class _MyVideoState extends State<MyVideo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       body: Container(
         child: SingleChildScrollView(
           physics: new BouncingScrollPhysics(),
